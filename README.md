@@ -1,6 +1,6 @@
-# UEE-2022
-Mobile Application
-###### This Web application developed for Wedawaru Plus.
+# Wedawaru Plus
+Web Application
+###### This Web application developed for Wedawaru Plus Mobile App.
 
 #### Frontend-React JS
 
