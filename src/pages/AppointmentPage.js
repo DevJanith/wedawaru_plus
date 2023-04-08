@@ -14,6 +14,11 @@ import {
 // components
 // import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 // import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import DialogModel from '../components/dialog/dialog';
+import { AppointmentCreate } from '../components/form/AppontmentCreate';
+import { AppointmentEdit } from '../components/form/AppontmentEdit';
+import { AppointmentValidate } from '../components/form/AppontmentValidate';
+import { AppointmentView } from '../components/form/AppontmentView';
 import Iconify from '../components/iconify';
 import { SearchFilter } from '../components/search-filter/SearchFilter';
 import DataTable from '../components/table/DataTable';
@@ -29,6 +34,36 @@ export default function AppointmentPage() {
     const handleCloseMenu = () => {
         setOpen(null);
     };
+
+    // dialog action
+    const handleDialogClickOpen = (props) => {
+        setDialogCom({
+            dialogTitle: props.title,
+            dialogForm: props.component,
+            dialogOpen: true,
+            handleDialogOpen: handleDialogClickOpen,
+            handleDialogClose: handleDialogClickClose
+        })
+        handleCloseMenu()
+    };
+
+    const handleDialogClickClose = () => {
+        setDialogCom({
+            dialogTitle: undefined,
+            dialogForm: undefined,
+            dialogOpen: false,
+            handleDialogOpen: handleDialogClickOpen,
+            handleDialogClose: handleDialogClickClose,
+        })
+    };
+
+    const [dialogCom, setDialogCom] = useState({
+        dialogTitle: undefined,
+        dialogForm: undefined,
+        dialogOpen: false,
+        handleDialogOpen: handleDialogClickOpen,
+        handleDialogClose: handleDialogClickClose,
+    })
 
     return (
         <>
@@ -80,7 +115,14 @@ export default function AppointmentPage() {
                         color: "white"
                     },
                     mb: 1
-                }}>
+                }}
+                    onClick={() => {
+                        handleDialogClickOpen({
+                            title: "Make An Appointment",
+                            component: <AppointmentCreate handleDialogClose={handleDialogClickClose} />
+                        })
+                    }}
+                >
                     <Iconify icon={'eva:plus-outline'} sx={{ mr: 2 }} />
                     Make An Appointment
                 </MenuItem>
@@ -91,7 +133,14 @@ export default function AppointmentPage() {
                         color: "white"
                     },
                     mb: 1
-                }}>
+                }}
+                    onClick={() => {
+                        handleDialogClickOpen({
+                            title: "Edit An Appointment",
+                            component: <AppointmentEdit handleDialogClose={handleDialogClickClose} />
+                        })
+                    }}
+                >
                     <Iconify icon={'eva:edit-fill'} sx={{ mr: 2 }} />
                     Edit An Appointment
                 </MenuItem>
@@ -102,7 +151,14 @@ export default function AppointmentPage() {
                         color: "white"
                     },
                     mb: 1
-                }}>
+                }}
+                    onClick={() => {
+                        handleDialogClickOpen({
+                            title: "View An Appointment",
+                            component: <AppointmentView handleDialogClose={handleDialogClickClose} />
+                        })
+                    }}
+                >
                     <Iconify icon={'eva:eye-outline'} sx={{ mr: 2 }} />
                     View An Appointment
                 </MenuItem>
@@ -112,11 +168,27 @@ export default function AppointmentPage() {
                         backgroundColor: 'red',
                         color: "white"
                     },
-                }}>
+                }}
+                    onClick={() => {
+                        handleDialogClickOpen({
+                            title: "Validate An Appointment",
+                            component: <AppointmentValidate handleDialogClose={handleDialogClickClose} />
+                        })
+                    }}
+                >
                     <Iconify icon={'eva:checkmark-circle-fill'} sx={{ mr: 2 }} />
                     Verify An Appointment
                 </MenuItem>
             </Popover>
+            {dialogCom.dialogOpen && <>
+                <DialogModel
+                    dialogTitle={dialogCom.dialogTitle}
+                    dialogForm={dialogCom.dialogForm}
+                    dialogOpen={dialogCom.dialogOpen}
+                    handleDialogOpen={dialogCom.handleDialogOpen}
+                    handleDialogClose={dialogCom.handleDialogClose}
+                />
+            </>}
         </>
     );
 }

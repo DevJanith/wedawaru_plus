@@ -7,25 +7,25 @@ import Iconify from '../iconify/Iconify';
 const validationSchema1 = yup.object({
     search: yup
         .string('Enter Search Query'),
-        // .when(['date', 'time'], {
-        //     is: (date, time) => !date && !time,
-        //     then: yup.string().required('Search Query is required'),
-        //     otherwise: yup.string()
-        // }),
+    // .when(['date', 'time'], {
+    //     is: (date, time) => !date && !time,
+    //     then: yup.string().required('Search Query is required'),
+    //     otherwise: yup.string()
+    // }),
     date: yup
         .string('Enter Date'),
-        // .when('search', {
-        //     is: (search) => !search,
-        //     then: yup.string().required('Date is required'),
-        //     otherwise: yup.string()
-        // }),
+    // .when('search', {
+    //     is: (search) => !search,
+    //     then: yup.string().required('Date is required'),
+    //     otherwise: yup.string()
+    // }),
     time: yup
         .string('Enter time')
-        // .when('search', {
-        //     is: (search) => !search,
-        //     then: yup.string().required('Time is required'),
-        //     otherwise: yup.string()
-        // })
+    // .when('search', {
+    //     is: (search) => !search,
+    //     then: yup.string().required('Time is required'),
+    //     otherwise: yup.string()
+    // })
 });
 
 export const SearchFilter = () => {
@@ -58,7 +58,7 @@ export const SearchFilter = () => {
         <div>
             <form onSubmit={formik.handleSubmit}>
                 <Grid container spacing={2} sx={{ padding: 3 }}>
-                    <Grid md={8} item>
+                    <Grid md={8} sm={12} xs={12} item>
                         <TextField
                             fullWidth
                             id="search"
@@ -75,12 +75,12 @@ export const SearchFilter = () => {
                             size='small'
                         />
                     </Grid>
-                    <Grid md={1} item>
+                    <Grid md={1} sm={3} xs={3} item>
                         <Button color="primary" variant="contained" fullWidth type="button" sx={{ height: "100%" }} onClick={handleChange}>
                             <Iconify icon={'eva:options-2-outline'} />
                         </Button>
                     </Grid>
-                    <Grid md={3} item>
+                    <Grid md={3} sm={9} xs={9} item>
                         <Button startIcon={<Iconify icon={'eva:search-fill'} sx={{ mr: 2 }} />} color="primary" variant="contained" fullWidth type="submit" sx={{ height: "100%" }}>
                             Search
                         </Button>
@@ -88,7 +88,7 @@ export const SearchFilter = () => {
                 </Grid>
                 <Collapse in={checked}>
                     <Grid container spacing={2} sx={{ padding: 3 }}>
-                        <Grid md={6} item>
+                        <Grid md={6} sm={6} xs={6} item>
                             <TextField
                                 fullWidth
                                 id="date"
@@ -104,7 +104,7 @@ export const SearchFilter = () => {
                                 }}
                             />
                         </Grid>
-                        <Grid md={6} item>
+                        <Grid md={6} sm={6} xs={6} item>
                             <TextField
                                 fullWidth
                                 id="time"
@@ -120,8 +120,8 @@ export const SearchFilter = () => {
                                 }}
                             />
                         </Grid>
-                        <Grid md={9} item />
-                        <Grid md={3} item>
+                        <Grid md={9} sm={12} xs={12} item />
+                        <Grid md={3} sm={12} xs={12} item>
                             <Button startIcon={<Iconify icon={'eva:search-fill'} sx={{ mr: 2 }} />} color="primary" variant="contained" fullWidth type="submit" sx={{ height: "100%" }}>
                                 Filter
                             </Button>
