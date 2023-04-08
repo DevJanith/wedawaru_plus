@@ -122,7 +122,7 @@ export const SearchFilter = () => {
                         </Grid>
                         <Grid md={9} sm={12} xs={12} item />
                         <Grid md={3} sm={12} xs={12} item>
-                            <Button startIcon={<Iconify icon={'eva:search-fill'} sx={{ mr: 2 }} />} color="primary" variant="contained" fullWidth type="submit" sx={{ height: "100%" }}>
+                            <Button startIcon={<Iconify icon={'eva:options-2-outline'} sx={{ mr: 2 }} />} color="primary" variant="contained" fullWidth type="submit" sx={{ height: "100%" }}>
                                 Filter
                             </Button>
                         </Grid>
