@@ -81,15 +81,18 @@ export default function AppointmentPage() {
                     </Button>
                 </Stack>
             </Container>
+
             <Card sx={{ marginBottom: "3%" }}>
                 <CardHeader
                     title={"Appointment List Search & Filter"}
                 />
                 <SearchFilter />
             </Card>
+
             <Card>
                 <DataTable />
             </Card>
+
             <Popover
                 open={Boolean(open)}
                 anchorEl={open}
@@ -180,6 +183,7 @@ export default function AppointmentPage() {
                     Verify An Appointment
                 </MenuItem>
             </Popover>
+            
             {dialogCom.dialogOpen && <>
                 <DialogModel
                     dialogTitle={dialogCom.dialogTitle}
