@@ -26,6 +26,14 @@ const Logo = forwardRef(({ disabledLink = false, sx, ...other }, ref) => {
     />
   );
 
+  const logoTitle = (
+    <Box
+      component="img"
+      src="/app_assets/logo_title.svg"
+      sx={{ marginLeft: 1, width: 200, height: 40, cursor: 'pointer', ...sx }}
+    />
+  );
+
   // const logo = (
   //   <Box
   //     ref={ref}
@@ -75,12 +83,12 @@ const Logo = forwardRef(({ disabledLink = false, sx, ...other }, ref) => {
   // );
 
   if (disabledLink) {
-    return <>{logo}</>;
+    return <>{logo} {logoTitle}</>;
   }
 
   return (
     <Link to="/" component={RouterLink} sx={{ display: 'contents' }}>
-      {logo}
+      {logo} {logoTitle}
     </Link>
   );
 });
