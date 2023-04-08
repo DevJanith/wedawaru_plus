@@ -46,7 +46,7 @@ export const AppointmentValidate = (props) => {
         <div>
             <form onSubmit={formik.handleSubmit}>
                 <Grid container spacing={2} sx={{ padding: 1 }}>
-                    <Grid md={8} sm={12} xs={12} item sx={{ mb: 3 }}>
+                    <Grid md={8} sm={12} xs={12} item>
                         <TextField
                             fullWidth
                             id="search"
@@ -63,12 +63,12 @@ export const AppointmentValidate = (props) => {
                             size='small'
                         />
                     </Grid>
-                    <Grid md={4} sm={9} xs={9} item>
-                        <Button startIcon={<Iconify icon={'eva:search-fill'} sx={{ mr: 2 }} />} color="primary" variant="contained" fullWidth type="button" sx={{ height: "65%" }}>
+                    <Grid md={4} sm={12} xs={12} item>
+                        <Button startIcon={<Iconify icon={'eva:search-fill'} sx={{ mr: 2 }} />} color="primary" variant="contained" fullWidth type="button" sx={{ height: "100%" }}>
                             Search
                         </Button>
                     </Grid>
-                    <Grid md={12} sm={12} xs={12} item>
+                    <Grid md={12} sm={12} xs={12} item sx={{ mt: 3 }}>
                         <TextField
                             fullWidth
                             id="contactNo"

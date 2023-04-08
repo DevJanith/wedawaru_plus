@@ -130,21 +130,23 @@ export const AppointmentCreate = (props) => {
                             size='small'
                         />
                     </Grid>
-                    <Grid md={2} sm={12} xs={12} item sx={{ mt: 3 }} />
-                    <Grid md={3} sm={12} xs={12} item sx={{ mt: 3 }}>
-                        <Button onClick={props.handleDialogClose} color="success" size="small" variant="outlined" fullWidth type="button" sx={{ height: "100%" }}>
-                            Cancel
-                        </Button>
-                    </Grid>
-                    <Grid md={3} sm={12} xs={12} item sx={{ mt: 3 }}>
-                        <Button onClick={props.handleDialogClose} color="secondary" size="small" variant="outlined" fullWidth type="button" sx={{ height: "100%" }}>
-                            Clear
-                        </Button>
-                    </Grid>
-                    <Grid md={4} sm={12} xs={12} item sx={{ mt: 3 }}>
-                        <Button onClick={props.handleDialogClose} color="primary" size="small" variant="outlined" fullWidth type="button" sx={{ height: "100%" }}>
-                            Book Appointment
-                        </Button>
+                    <Grid container spacing={2} sx={{ mt: 3 }}>
+                        <Grid md={2} sm={12} xs={12} item />
+                        <Grid md={3} sm={12} xs={12} item >
+                            <Button onClick={props.handleDialogClose} color="success" size="small" variant="outlined" fullWidth type="button" sx={{ height: "100%" }}>
+                                Cancel
+                            </Button>
+                        </Grid>
+                        <Grid md={3} sm={12} xs={12} item >
+                            <Button onClick={props.handleDialogClose} color="secondary" size="small" variant="outlined" fullWidth type="button" sx={{ height: "100%" }}>
+                                Clear
+                            </Button>
+                        </Grid>
+                        <Grid md={4} sm={12} xs={12} item >
+                            <Button onClick={props.handleDialogClose} color="primary" size="small" variant="outlined" fullWidth type="button" sx={{ height: "100%" }}>
+                                Book Appointment
+                            </Button>
+                        </Grid>
                     </Grid>
                 </Grid>
             </form>
