@@ -7,7 +7,7 @@ import { useTheme } from '@mui/material/styles';
 
 // ----------------------------------------------------------------------
 
-const Logo = forwardRef(({ disabledLink = false, sx, ...other }, ref) => {
+const LogoHome = forwardRef(({ disabledLink = false, sx, ...other }, ref) => {
   const theme = useTheme();
 
   const PRIMARY_LIGHT = theme.palette.primary.light;
@@ -30,7 +30,7 @@ const Logo = forwardRef(({ disabledLink = false, sx, ...other }, ref) => {
     <Box
       component="img"
       src="/app_assets/logo_title.svg"
-      sx={{ marginLeft: 7, width: 200, height: 40, cursor: 'pointer', ...sx }}
+      sx={{ marginLeft: 1, width: 200, height: 40, cursor: 'pointer', ...sx }}
     />
   );
 
@@ -93,9 +93,9 @@ const Logo = forwardRef(({ disabledLink = false, sx, ...other }, ref) => {
   );
 });
 
-Logo.propTypes = {
+LogoHome.propTypes = {
   sx: PropTypes.object,
   disabledLink: PropTypes.bool,
 };
 
-export default Logo;
+export default LogoHome;

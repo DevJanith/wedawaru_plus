@@ -2,17 +2,17 @@ import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 // @mui
-import { styled, alpha } from '@mui/material/styles';
-import { Box, Link, Button, Drawer, Typography, Avatar, Stack } from '@mui/material';
+import { Avatar, Box, Drawer, Link, Typography } from '@mui/material';
+import { alpha, styled } from '@mui/material/styles';
 // mock
 import account from '../../../_mock/account';
 // hooks
 import useResponsive from '../../../hooks/useResponsive';
 // components
-import Logo from '../../../components/logo';
-import Scrollbar from '../../../components/scrollbar';
 import NavSection from '../../../components/nav-section';
+import Scrollbar from '../../../components/scrollbar';
 //
+import LogoHome from '../../../components/logo/LogoHome';
 import navConfig from './config';
 
 // ----------------------------------------------------------------------
@@ -54,7 +54,7 @@ export default function Nav({ openNav, onCloseNav }) {
       }}
     >
       <Box sx={{ px: 2.5, py: 3, display: 'inline-flex' }}>
-        <Logo />
+        <LogoHome />
       </Box>
 
       <Box sx={{ mb: 5, mx: 2.5 }}>
