@@ -18,9 +18,8 @@ import DialogModel from '../components/dialog/dialog';
 import { AppointmentCreate } from '../components/form/AppontmentCreate';
 import { AppointmentEdit } from '../components/form/AppontmentEdit';
 import { AppointmentValidate } from '../components/form/AppontmentValidate';
-import { AppointmentView } from '../components/form/AppontmentView';
 import Iconify from '../components/iconify';
-import { SearchFilter } from '../components/search-filter/SearchFilter';
+import { Search } from '../components/search/Search';
 import DataTable from '../components/table/DataTable';
 
 export default function AppointmentPage() {
@@ -86,7 +85,7 @@ export default function AppointmentPage() {
                 <CardHeader
                     title={"Appointment List Search & Filter"}
                 />
-                <SearchFilter />
+                <Search />
             </Card>
 
             <Card>
@@ -122,7 +121,7 @@ export default function AppointmentPage() {
                     onClick={() => {
                         handleDialogClickOpen({
                             title: "Make An Appointment",
-                            component: <AppointmentCreate handleDialogClose={handleDialogClickClose} />
+                            component: <AppointmentCreate handleDialogClose={handleDialogClickClose} handleDialogClickOpen={handleDialogClickOpen} />
                         })
                     }}
                 >
@@ -139,32 +138,14 @@ export default function AppointmentPage() {
                 }}
                     onClick={() => {
                         handleDialogClickOpen({
-                            title: "Edit An Appointment",
-                            component: <AppointmentEdit handleDialogClose={handleDialogClickClose} />
+                            title: "Modify An Appointment",
+                            component: <AppointmentEdit handleDialogClose={handleDialogClickClose} handleDialogClickOpen={handleDialogClickOpen} />
                         })
                     }}
                 >
                     <Iconify icon={'eva:edit-fill'} sx={{ mr: 2 }} />
-                    Edit An Appointment
-                </MenuItem>
-                <MenuItem sx={{
-                    border: '1px solid orange', color: "orange",
-                    '&:hover': {
-                        backgroundColor: 'orange',
-                        color: "white"
-                    },
-                    mb: 1
-                }}
-                    onClick={() => {
-                        handleDialogClickOpen({
-                            title: "View An Appointment",
-                            component: <AppointmentView handleDialogClose={handleDialogClickClose} />
-                        })
-                    }}
-                >
-                    <Iconify icon={'eva:eye-outline'} sx={{ mr: 2 }} />
-                    View An Appointment
-                </MenuItem>
+                    Modify An Appointment
+                </MenuItem> 
                 <MenuItem sx={{
                     border: '1px solid red', color: "red",
                     '&:hover': {
@@ -174,8 +155,8 @@ export default function AppointmentPage() {
                 }}
                     onClick={() => {
                         handleDialogClickOpen({
-                            title: "Validate An Appointment",
-                            component: <AppointmentValidate handleDialogClose={handleDialogClickClose} />
+                            title: "Verify An Appointment",
+                            component: <AppointmentValidate handleDialogClose={handleDialogClickClose} handleDialogClickOpen={handleDialogClickOpen} />
                         })
                     }}
                 >
@@ -183,7 +164,7 @@ export default function AppointmentPage() {
                     Verify An Appointment
                 </MenuItem>
             </Popover>
-            
+
             {dialogCom.dialogOpen && <>
                 <DialogModel
                     dialogTitle={dialogCom.dialogTitle}

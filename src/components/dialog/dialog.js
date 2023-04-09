@@ -1,21 +1,21 @@
-import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
+import Slide from '@mui/material/Slide';
+import * as React from 'react';
 
-// const Transition = React.forwardRef(function Transition(props, ref) {
-//     return <Slide direction="up" ref={ref} {...props} />;
-// });
+const Transition = React.forwardRef((props, ref) => {
+    return <Slide direction="up" ref={ref} {...props} />;
+});
 
-export default function DialogModel(props) { 
+export default function DialogModel(props) {
 
     return (
         <div>
             <Dialog
                 open={props.dialogOpen}
                 fullWidth
-                // TransitionComponent={Transition}
+                TransitionComponent={Transition}
                 keepMounted
                 onClose={props.handleDialogClose}
                 aria-describedby="alert-dialog-slide-description"
@@ -23,7 +23,7 @@ export default function DialogModel(props) {
                 <DialogTitle>{typeof props.dialogTitle === "undefined" ? "N/A" : props.dialogTitle}</DialogTitle>
                 <DialogContent>
                     {typeof props.dialogForm === "undefined" ? <>N/A</> : <>{props.dialogForm}</>}
-                </DialogContent> 
+                </DialogContent>
             </Dialog>
         </div>
     );

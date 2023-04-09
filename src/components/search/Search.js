@@ -6,32 +6,32 @@ import Iconify from '../iconify/Iconify';
 
 const validationSchema1 = yup.object({
     search: yup
-        .string('Enter Search Query')
-        .required('Required Search Query Field'),
-    contactNo: yup
-        .string('Enter Contact No')
-        .required('Required Contact No Field'),
-    fullName: yup
-        .string('Enter Full Name')
-        .required('Required Full Name Field'),
-    gender: yup
-        .string('Enter Gender')
-        .required('Required Gender Field'),
+        .string('Enter Search Query'),
+    // .when(['date', 'time'], {
+    //     is: (date, time) => !date && !time,
+    //     then: yup.string().required('Search Query is required'),
+    //     otherwise: yup.string()
+    // }),
     date: yup
-        .string('Enter Date')
-        .required('Required Date Field'),
+        .string('Enter Date'),
+    // .when('search', {
+    //     is: (search) => !search,
+    //     then: yup.string().required('Date is required'),
+    //     otherwise: yup.string()
+    // }),
     time: yup
-        .string('Enter Time')
-        .required('Required Time Field'),
+        .string('Enter time')
+    // .when('search', {
+    //     is: (search) => !search,
+    //     then: yup.string().required('Time is required'),
+    //     otherwise: yup.string()
+    // })
 });
 
-export const AppointmentView = (props) => {
+export const Search = () => {
 
     const initialValues = {
         search: '',
-        contactNo: '',
-        fullName: '',
-        gender: '',
         date: '',
         time: '',
     }
@@ -59,22 +59,17 @@ export const AppointmentView = (props) => {
         { key: 2, value: "time-option-2" },
     ];
 
-    const genderOptions = [
-        { key: 1, value: "Male" },
-        { key: 2, value: "Female" },
-    ];
-
     return (
         <div>
             <form onSubmit={formik.handleSubmit}>
-                <Grid container spacing={2} sx={{ padding: 1 }}>
+                <Grid container spacing={2} sx={{ padding: 3 }}>
                     <Grid md={8} sm={12} xs={12} item>
                         <TextField
                             fullWidth
                             id="search"
                             name="search"
                             label="Search"
-                            placeholder='Search by Appointment No, Contact No ... '
+                            placeholder='Search by Appointment Id, No, Name, Contact No ... '
                             value={formik.values.search}
                             onChange={formik.handleChange}
                             error={formik.touched.search && Boolean(formik.errors.search)}
@@ -85,83 +80,12 @@ export const AppointmentView = (props) => {
                             size='small'
                         />
                     </Grid>
-                    <Grid md={4} sm={12} xs={12} item>
-                        <Button startIcon={<Iconify icon={'eva:search-fill'} sx={{ mr: 2 }} />} color="primary" variant="contained" fullWidth type="button" sx={{ height: "100%" }}>
+                    <Grid md={4} sm={9} xs={9} item>
+                        <Button startIcon={<Iconify icon={'eva:search-fill'} sx={{ mr: 1 }} />} color="primary" variant="contained" fullWidth type="submit" sx={{ height: "100%" }}>
                             Search
                         </Button>
                     </Grid>
-                    <Grid md={12} sm={12} xs={12} item sx={{ mt: 3 }}>
-                        <TextField
-                            fullWidth
-                            id="contactNo"
-                            name="contactNo"
-                            label="Contact No"
-                            value={formik.values.contactNo}
-                            onChange={formik.handleChange}
-                            error={formik.touched.contactNo && Boolean(formik.errors.contactNo)}
-                            helperText={formik.touched.contactNo && formik.errors.contactNo}
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                            size='small'
-                        />
-                    </Grid>
-                    <Grid md={12} sm={12} xs={12} item>
-                        <TextField
-                            fullWidth
-                            id="fullName"
-                            name="fullName"
-                            label="Full Name (with initials)"
-                            value={formik.values.fullName}
-                            onChange={formik.handleChange}
-                            error={formik.touched.fullName && Boolean(formik.errors.fullName)}
-                            helperText={formik.touched.fullName && formik.errors.fullName}
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                            size='small'
-                        />
-                    </Grid>
-                    <Grid md={12} sm={12} xs={12} item>
-                        <FormControl fullWidth error={formik.touched.gender && Boolean(formik.errors.gender)} size='small'>
-                            <InputLabel shrink htmlFor="gender">
-                                Gender
-                            </InputLabel>
-                            <Select
-                                label="Gender"
-                                id="gender"
-                                name="gender"
-                                value={formik.values.gender}
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                displayEmpty
-                            >
-                                <MenuItem value="" disabled>
-                                    Select gender
-                                </MenuItem>
-                                {genderOptions.map(option => (
-                                    <MenuItem key={option.key} value={option.value}>
-                                        {option.value}
-                                    </MenuItem>
-                                ))}
-                            </Select>
-                        </FormControl>
-                        <div
-                            style={{
-                                color: "#BF3D3D",
-                                lineHeight: "1.5",
-                                fontSize: "0.75rem",
-                                fontFamily: "Public Sans,sans-serif",
-                                fontWeight: "400",
-                                textAlign: "left",
-                                marginTop: "4px",
-                                marginRight: "14px",
-                                marginBottom: "0",
-                                marginLeft: "14px",
-                            }}
-                        >{formik.touched.gender && formik.errors.gender}</div>
-                    </Grid>
-                    <Grid md={12} sm={12} xs={12} item>
+                    <Grid md={5} sm={5} xs={5} item>
                         <FormControl fullWidth error={formik.touched.date && Boolean(formik.errors.date)} size='small'>
                             <InputLabel shrink htmlFor="date">
                                 Date
@@ -200,7 +124,7 @@ export const AppointmentView = (props) => {
                             }}
                         >{formik.touched.date && formik.errors.date}</div>
                     </Grid>
-                    <Grid md={12} sm={12} xs={12} item sx={{ mb: 3 }}>
+                    <Grid md={5} sm={5} xs={5} item>
                         <FormControl fullWidth error={formik.touched.time && Boolean(formik.errors.time)} size='small'>
                             <InputLabel shrink htmlFor="time">
                                 Time
@@ -239,14 +163,13 @@ export const AppointmentView = (props) => {
                             }}
                         >{formik.touched.time && formik.errors.time}</div>
                     </Grid>
-                    <Grid md={9} sm={12} xs={12} item />
-                    <Grid md={3} sm={12} xs={12} item>
-                        <Button onClick={props.handleDialogClose} color="primary" variant="outlined" fullWidth type="button" sx={{ height: "100%" }}>
-                            Cancel
+                    <Grid md={2} sm={12} xs={12} item>
+                        <Button startIcon={<Iconify icon={'eva:pantone-fill'} sx={{ mr: 1 }} />} color="primary" variant="outlined" fullWidth type="button" sx={{ height: "100%" }}>
+                            Today
                         </Button>
                     </Grid>
                 </Grid>
-            </form>
+            </form >
         </div >
     );
 };

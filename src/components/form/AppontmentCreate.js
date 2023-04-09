@@ -1,20 +1,26 @@
-import { Button, Grid, TextField } from '@mui/material';
+import { Button, FormControl, Grid, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import { useFormik } from 'formik';
 import { useState } from 'react';
 import * as yup from 'yup';
+import { AppointmentCard } from '../card/AppointmentCard';
 import Iconify from '../iconify/Iconify';
 
 const validationSchema1 = yup.object({
     contactNo: yup
-        .string('Enter Contact No'),
+        .string('Enter Contact No')
+        .required('Required Contact No Field'),
     fullName: yup
-        .string('Enter Full Name'),
+        .string('Enter Full Name')
+        .required('Required Full Name Field'),
     gender: yup
-        .string('Enter Gender'),
+        .string('Enter Gender')
+        .required('Required Gender Field'),
     date: yup
-        .string('Enter Date'),
+        .string('Enter Date')
+        .required('Required Date Field'),
     time: yup
-        .string('Enter Time'),
+        .string('Enter Time')
+        .required('Required Time Field'),
 });
 
 export const AppointmentCreate = (props) => {
@@ -22,14 +28,42 @@ export const AppointmentCreate = (props) => {
     const initialValues = {
         contactNo: '',
         fullName: '',
-        gender: '',
+        gender: 'Male',
         date: '',
         time: '',
     }
     const [values, setValues] = useState(initialValues)
 
     const handleSubmit = (values, { resetForm }) => {
-        alert(JSON.stringify(values, null, 2));
+        // alert(JSON.stringify(values, null, 2));
+
+        props.handleDialogClose();
+
+        setTimeout(() => {
+            props.handleDialogClickOpen({
+                title: "",
+                component: <AppointmentCard
+                    handleDialogClose={props.handleDialogClose}
+                    data={{ id: 1, appId: "454532", appNo: "01", fullNameWithInitials: "A B C Peprera", gender: "Male", contactNo: "0718078368", status: "COMPLETED", date: "2023-04-08", time: "11:00:00", action: "" }}
+                    action={() => {
+                        return <>
+                            <Grid md={5} sm={12} xs={12} item />
+                            <Grid md={3} sm={12} xs={12} item >
+                                <Button onClick={props.handleDialogClose} color="success" size="small" variant="outlined" fullWidth type="button" sx={{ height: "100%" }}>
+                                    Cancel
+                                </Button>
+                            </Grid>
+                            <Grid md={4} sm={12} xs={12} item >
+                                <Button onClick={props.handleDialogClose} color="primary" size="small" variant="outlined" fullWidth type="button" sx={{ height: "100%" }}>
+                                    Confirm Booking
+                                </Button>
+                            </Grid>
+                        </>
+                    }
+                    }
+                />,
+            });
+        }, 100); // Change the delay time in milliseconds (ms) as needed 
         resetForm();
     }
 
@@ -38,6 +72,22 @@ export const AppointmentCreate = (props) => {
         validationSchema: validationSchema1,
         onSubmit: handleSubmit,
     });
+
+    // option fields
+    const dateOptions = [
+        { key: 1, value: "date-option-1" },
+        { key: 2, value: "date-option-2" },
+    ];
+
+    const timeOptions = [
+        { key: 1, value: "time-option-1" },
+        { key: 2, value: "time-option-2" },
+    ];
+
+    const genderOptions = [
+        { key: 1, value: "Male" },
+        { key: 2, value: "Female" },
+    ];
 
     return (
         <div>
@@ -81,54 +131,121 @@ export const AppointmentCreate = (props) => {
                         />
                     </Grid>
                     <Grid md={12} sm={12} xs={12} item>
-                        <TextField
-                            fullWidth
-                            id="gender"
-                            name="gender"
-                            label="Gender"
-                            value={formik.values.gender}
-                            onChange={formik.handleChange}
-                            error={formik.touched.gender && Boolean(formik.errors.gender)}
-                            helperText={formik.touched.gender && formik.errors.gender}
-                            InputLabelProps={{
-                                shrink: true,
+                        <FormControl fullWidth error={formik.touched.gender && Boolean(formik.errors.gender)} size='small'>
+                            <InputLabel shrink htmlFor="gender">
+                                Gender
+                            </InputLabel>
+                            <Select
+                                label="Gender"
+                                id="gender"
+                                name="gender"
+                                value={formik.values.gender}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                displayEmpty
+                            >
+                                <MenuItem value="" disabled>
+                                    Select gender
+                                </MenuItem>
+                                {genderOptions.map(option => (
+                                    <MenuItem key={option.key} value={option.value}>
+                                        {option.value}
+                                    </MenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
+                        <div
+                            style={{
+                                color: "#BF3D3D",
+                                lineHeight: "1.5",
+                                fontSize: "0.75rem",
+                                fontFamily: "Public Sans,sans-serif",
+                                fontWeight: "400",
+                                textAlign: "left",
+                                marginTop: "4px",
+                                marginRight: "14px",
+                                marginBottom: "0",
+                                marginLeft: "14px",
                             }}
-                            size='small'
-                        />
+                        >{formik.touched.gender && formik.errors.gender}</div>
                     </Grid>
                     <Grid md={12} sm={12} xs={12} item>
-                        <TextField
-                            fullWidth
-                            id="date"
-                            name="date"
-                            label="Date"
-                            type='date'
-                            value={formik.values.date}
-                            onChange={formik.handleChange}
-                            error={formik.touched.date && Boolean(formik.errors.date)}
-                            helperText={formik.touched.date && formik.errors.date}
-                            InputLabelProps={{
-                                shrink: true,
+                        <FormControl fullWidth error={formik.touched.date && Boolean(formik.errors.date)} size='small'>
+                            <InputLabel shrink htmlFor="date">
+                                Date
+                            </InputLabel>
+                            <Select
+                                label="Date"
+                                id="date"
+                                name="date"
+                                value={formik.values.date}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                displayEmpty
+                            >
+                                <MenuItem value="" disabled>
+                                    Select date
+                                </MenuItem>
+                                {dateOptions.map(option => (
+                                    <MenuItem key={option.key} value={option.value}>
+                                        {option.value}
+                                    </MenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
+                        <div
+                            style={{
+                                color: "#BF3D3D",
+                                lineHeight: "1.5",
+                                fontSize: "0.75rem",
+                                fontFamily: "Public Sans,sans-serif",
+                                fontWeight: "400",
+                                textAlign: "left",
+                                marginTop: "4px",
+                                marginRight: "14px",
+                                marginBottom: "0",
+                                marginLeft: "14px",
                             }}
-                            size='small'
-                        />
+                        >{formik.touched.date && formik.errors.date}</div>
                     </Grid>
                     <Grid md={12} sm={12} xs={12} item sx={{ mb: 3 }}>
-                        <TextField
-                            fullWidth
-                            id="time"
-                            name="time"
-                            label="Time"
-                            type='time'
-                            value={formik.values.time}
-                            onChange={formik.handleChange}
-                            error={formik.touched.time && Boolean(formik.errors.time)}
-                            helperText={formik.touched.time && formik.errors.time}
-                            InputLabelProps={{
-                                shrink: true,
+                        <FormControl fullWidth error={formik.touched.time && Boolean(formik.errors.time)} size='small'>
+                            <InputLabel shrink htmlFor="time">
+                                Time
+                            </InputLabel>
+                            <Select
+                                label="Time"
+                                id="time"
+                                name="time"
+                                value={formik.values.time}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                displayEmpty
+                            >
+                                <MenuItem value="" disabled>
+                                    Select time
+                                </MenuItem>
+                                {timeOptions.map(option => (
+                                    <MenuItem key={option.key} value={option.value}>
+                                        {option.value}
+                                    </MenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
+                        <div
+                            style={{
+                                color: "#BF3D3D",
+                                lineHeight: "1.5",
+                                fontSize: "0.75rem",
+                                fontFamily: "Public Sans,sans-serif",
+                                fontWeight: "400",
+                                textAlign: "left",
+                                marginTop: "4px",
+                                marginRight: "14px",
+                                marginBottom: "0",
+                                marginLeft: "14px",
                             }}
-                            size='small'
-                        />
+                        >{formik.touched.time && formik.errors.time}</div>
                     </Grid>
                     <Grid md={2} sm={12} xs={12} item />
                     <Grid md={3} sm={12} xs={12} item >
@@ -142,7 +259,7 @@ export const AppointmentCreate = (props) => {
                         </Button>
                     </Grid>
                     <Grid md={4} sm={12} xs={12} item >
-                        <Button onClick={props.handleDialogClose} color="primary" size="small" variant="outlined" fullWidth type="button" sx={{ height: "100%" }}>
+                        <Button color="primary" size="small" variant="outlined" fullWidth type="submit" sx={{ height: "100%" }}>
                             Book Appointment
                         </Button>
                     </Grid>
