@@ -3,6 +3,7 @@ import { useFormik } from 'formik';
 import { useState } from 'react';
 import * as yup from 'yup';
 import Iconify from '../iconify/Iconify';
+import { AppointmentEdit } from './AppontmentEdit';
 
 const validationSchema1 = yup.object({
     search: yup
@@ -251,7 +252,16 @@ export const AppointmentValidate = (props) => {
                         </Button>
                     </Grid>
                     <Grid md={4} sm={12} xs={12} item >
-                        <Button onClick={props.handleDialogClose} color="primary" size="small" variant="outlined" fullWidth type="button" sx={{ height: "100%" }}>
+                        <Button onClick={() => { 
+                            props.handleDialogClose();
+ 
+                            setTimeout(() => { 
+                                props.handleDialogClickOpen({
+                                    title: "Modify An Appointment",
+                                    component: <AppointmentEdit handleDialogClose={props.handleDialogClose} />
+                                });
+                            }, 100); // Change the delay time in milliseconds (ms) as needed
+                        }} color="primary" size="small" variant="outlined" fullWidth type="button" sx={{ height: "100%" }}>
                             Modify Appointment
                         </Button>
                     </Grid>
