@@ -139,15 +139,15 @@ export default function AppointmentPage() {
                 }}
                     onClick={() => {
                         handleDialogClickOpen({
-                            title: "Edit An Appointment",
+                            title: "Modify An Appointment",
                             component: <AppointmentEdit handleDialogClose={handleDialogClickClose} />
                         })
                     }}
                 >
                     <Iconify icon={'eva:edit-fill'} sx={{ mr: 2 }} />
-                    Edit An Appointment
+                    Modify An Appointment
                 </MenuItem>
-                <MenuItem sx={{
+                {/* <MenuItem sx={{
                     border: '1px solid orange', color: "orange",
                     '&:hover': {
                         backgroundColor: 'orange',
@@ -164,7 +164,7 @@ export default function AppointmentPage() {
                 >
                     <Iconify icon={'eva:eye-outline'} sx={{ mr: 2 }} />
                     View An Appointment
-                </MenuItem>
+                </MenuItem> */}
                 <MenuItem sx={{
                     border: '1px solid red', color: "red",
                     '&:hover': {
@@ -174,7 +174,7 @@ export default function AppointmentPage() {
                 }}
                     onClick={() => {
                         handleDialogClickOpen({
-                            title: "Validate An Appointment",
+                            title: "Verify An Appointment",
                             component: <AppointmentValidate handleDialogClose={handleDialogClickClose} />
                         })
                     }}
@@ -183,7 +183,7 @@ export default function AppointmentPage() {
                     Verify An Appointment
                 </MenuItem>
             </Popover>
-            
+
             {dialogCom.dialogOpen && <>
                 <DialogModel
                     dialogTitle={dialogCom.dialogTitle}
