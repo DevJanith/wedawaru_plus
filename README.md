@@ -26,7 +26,7 @@
 
 ```javascript
 
-> yarn
+yarn
 
 ```
 
@@ -36,7 +36,7 @@
 
 ```javascript
 
-> yarn start
+yarn start
 
 ```
 #### Accessing the Web Application
