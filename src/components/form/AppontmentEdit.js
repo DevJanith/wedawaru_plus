@@ -3,6 +3,7 @@ import { useFormik } from 'formik';
 import { useState } from 'react';
 import * as yup from 'yup';
 import Iconify from '../iconify/Iconify';
+import { AppointmentCard } from '../card/AppointmentCard';
 
 const validationSchema1 = yup.object({
     search: yup
@@ -28,17 +29,45 @@ const validationSchema1 = yup.object({
 export const AppointmentEdit = (props) => {
 
     const initialValues = {
-        search: '',
-        contactNo: '',
-        fullName: '',
-        gender: '',
-        date: '',
-        time: '',
+        search: '454532',
+        contactNo: '0718078368',
+        fullName: 'A B C Peprera',
+        gender: 'Male',
+        date: 'date-option-1',
+        time: 'time-option-1',
     }
     const [values, setValues] = useState(initialValues)
 
     const handleSubmit = (values, { resetForm }) => {
-        alert(JSON.stringify(values, null, 2));
+        // alert(JSON.stringify(values, null, 2));
+
+        props.handleDialogClose();
+
+        setTimeout(() => {
+            props.handleDialogClickOpen({
+                title: "",
+                component: <AppointmentCard
+                    handleDialogClose={props.handleDialogClose}
+                    data={{ id: 1, appId: "454532", appNo: "01", fullNameWithInitials: "A B C Peprera", gender: "Male", contactNo: "0718078368", status: "COMPLETED", date: "2023-04-08", time: "11:00:00", action: "" }}
+                    action={() => {
+                        return <>
+                            <Grid md={5} sm={12} xs={12} item />
+                            <Grid md={3} sm={12} xs={12} item >
+                                <Button onClick={props.handleDialogClose} color="success" size="small" variant="outlined" fullWidth type="button" sx={{ height: "100%" }}>
+                                    Cancel
+                                </Button>
+                            </Grid>
+                            <Grid md={4} sm={12} xs={12} item >
+                                <Button onClick={props.handleDialogClose} color="primary" size="small" variant="outlined" fullWidth type="button" sx={{ height: "100%" }}>
+                                    Confirm Booking
+                                </Button>
+                            </Grid>
+                        </>
+                    }
+                    }
+                />,
+            });
+        }, 100); // Change the delay time in milliseconds (ms) as needed 
         resetForm();
     }
 
@@ -104,6 +133,7 @@ export const AppointmentEdit = (props) => {
                                 shrink: true,
                             }}
                             size='small'
+                            disabled
                         />
                     </Grid>
                     <Grid md={12} sm={12} xs={12} item>
@@ -120,6 +150,7 @@ export const AppointmentEdit = (props) => {
                                 shrink: true,
                             }}
                             size='small'
+                            disabled
                         />
                     </Grid>
                     <Grid md={12} sm={12} xs={12} item>
@@ -135,6 +166,7 @@ export const AppointmentEdit = (props) => {
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                                 displayEmpty
+                                disabled
                             >
                                 <MenuItem value="" disabled>
                                     Select gender

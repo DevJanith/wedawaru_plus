@@ -29,12 +29,12 @@ const validationSchema1 = yup.object({
 export const AppointmentValidate = (props) => {
 
     const initialValues = {
-        search: '',
-        contactNo: '',
-        fullName: '',
-        gender: '',
-        date: '',
-        time: '',
+        search: '454532',
+        contactNo: '0718078368',
+        fullName: 'A B C Peprera',
+        gender: 'Male',
+        date: 'date-option-1',
+        time: 'time-option-1',
     }
     const [values, setValues] = useState(initialValues)
 
@@ -105,6 +105,7 @@ export const AppointmentValidate = (props) => {
                                 shrink: true,
                             }}
                             size='small'
+                            disabled 
                         />
                     </Grid>
                     <Grid md={12} sm={12} xs={12} item>
@@ -121,6 +122,13 @@ export const AppointmentValidate = (props) => {
                                 shrink: true,
                             }}
                             size='small'
+                            disabled
+                            InputProps={{
+                                style: { 
+                                    color: 'grey',
+                                    cursor: 'not-allowed',
+                                }
+                            }}
                         />
                     </Grid>
                     <Grid md={12} sm={12} xs={12} item>
@@ -136,6 +144,7 @@ export const AppointmentValidate = (props) => {
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                                 displayEmpty
+                                disabled
                             >
                                 <MenuItem value="" disabled>
                                     Select gender
@@ -175,6 +184,7 @@ export const AppointmentValidate = (props) => {
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                                 displayEmpty
+                                disabled
                             >
                                 <MenuItem value="" disabled>
                                     Select date
@@ -214,6 +224,7 @@ export const AppointmentValidate = (props) => {
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                                 displayEmpty
+                                disabled
                             >
                                 <MenuItem value="" disabled>
                                     Select time
@@ -252,13 +263,13 @@ export const AppointmentValidate = (props) => {
                         </Button>
                     </Grid>
                     <Grid md={4} sm={12} xs={12} item >
-                        <Button onClick={() => { 
+                        <Button onClick={() => {
                             props.handleDialogClose();
- 
-                            setTimeout(() => { 
+
+                            setTimeout(() => {
                                 props.handleDialogClickOpen({
                                     title: "Modify An Appointment",
-                                    component: <AppointmentEdit handleDialogClose={props.handleDialogClose} />
+                                    component: <AppointmentEdit handleDialogClose={props.handleDialogClose} handleDialogClickOpen={props.handleDialogClickOpen} />
                                 });
                             }, 100); // Change the delay time in milliseconds (ms) as needed
                         }} color="primary" size="small" variant="outlined" fullWidth type="button" sx={{ height: "100%" }}>

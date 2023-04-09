@@ -2,6 +2,7 @@ import { Button, FormControl, Grid, InputLabel, MenuItem, Select, TextField } fr
 import { useFormik } from 'formik';
 import { useState } from 'react';
 import * as yup from 'yup';
+import { AppointmentCard } from '../card/AppointmentCard';
 import Iconify from '../iconify/Iconify';
 
 const validationSchema1 = yup.object({
@@ -34,7 +35,35 @@ export const AppointmentCreate = (props) => {
     const [values, setValues] = useState(initialValues)
 
     const handleSubmit = (values, { resetForm }) => {
-        alert(JSON.stringify(values, null, 2));
+        // alert(JSON.stringify(values, null, 2));
+
+        props.handleDialogClose();
+
+        setTimeout(() => {
+            props.handleDialogClickOpen({
+                title: "",
+                component: <AppointmentCard
+                    handleDialogClose={props.handleDialogClose}
+                    data={{ id: 1, appId: "454532", appNo: "01", fullNameWithInitials: "A B C Peprera", gender: "Male", contactNo: "0718078368", status: "COMPLETED", date: "2023-04-08", time: "11:00:00", action: "" }}
+                    action={() => {
+                        return <>
+                            <Grid md={5} sm={12} xs={12} item />
+                            <Grid md={3} sm={12} xs={12} item >
+                                <Button onClick={props.handleDialogClose} color="success" size="small" variant="outlined" fullWidth type="button" sx={{ height: "100%" }}>
+                                    Cancel
+                                </Button>
+                            </Grid>
+                            <Grid md={4} sm={12} xs={12} item >
+                                <Button onClick={props.handleDialogClose} color="primary" size="small" variant="outlined" fullWidth type="button" sx={{ height: "100%" }}>
+                                    Confirm Booking
+                                </Button>
+                            </Grid>
+                        </>
+                    }
+                    }
+                />,
+            });
+        }, 100); // Change the delay time in milliseconds (ms) as needed 
         resetForm();
     }
 
