@@ -26,7 +26,7 @@
 
 ```javascript
 
-> source\frontend\app> yarn
+> yarn
 
 ```
 
@@ -36,7 +36,7 @@
 
 ```javascript
 
-> source\frontend\app> yarn start
+> yarn start
 
 ```
 #### Accessing the Web Application
