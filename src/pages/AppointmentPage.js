@@ -19,7 +19,7 @@ import { AppointmentCreate } from '../components/form/AppontmentCreate';
 import { AppointmentEdit } from '../components/form/AppontmentEdit';
 import { AppointmentValidate } from '../components/form/AppontmentValidate';
 import Iconify from '../components/iconify';
-import { SearchFilter } from '../components/search-filter/SearchFilter';
+import { Search } from '../components/search/Search';
 import DataTable from '../components/table/DataTable';
 
 export default function AppointmentPage() {
@@ -85,7 +85,7 @@ export default function AppointmentPage() {
                 <CardHeader
                     title={"Appointment List Search & Filter"}
                 />
-                <SearchFilter />
+                <Search />
             </Card>
 
             <Card>

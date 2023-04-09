@@ -36,8 +36,8 @@ import { DataGrid } from '@mui/x-data-grid';
 
 
 const columns = [
-  { field: 'appId', headerName: 'App ID', width: 150 },
-  { field: 'appNo', headerName: 'App No', width: 150 },
+  { field: 'appId', headerName: 'App ID', width: 125 },
+  { field: 'appNo', headerName: 'App No', width: 125 },
   { field: 'fullNameWithInitials', headerName: 'Full Name (with initials)', width: 200 },
   { field: 'gender', headerName: 'Gender', width: 150 },
   { field: 'contactNo', headerName: 'Contact No', width: 150 },
@@ -51,8 +51,8 @@ const columns = [
       )
     },
   },
-  { field: 'date', headerName: 'Date', width: 150 },
-  { field: 'time', headerName: 'Time', width: 150 },
+  // { field: 'date', headerName: 'Date', width: 150 },
+  // { field: 'time', headerName: 'Time', width: 150 },
   {
     field: 'action', headerName: 'Action', width: 230,
     renderCell: (params) => {
@@ -115,7 +115,7 @@ export default function DataTable() {
         columns={columns}
         pageSize={5}
         rowsPerPageOptions={[5]}
-        checkboxSelection
+        // checkboxSelection
       />
     </div>
   );
