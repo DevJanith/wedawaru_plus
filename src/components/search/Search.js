@@ -80,12 +80,12 @@ export const Search = () => {
                             size='small'
                         />
                     </Grid>
-                    <Grid md={4} sm={9} xs={9} item>
+                    <Grid md={4} sm={12} xs={12} item>
                         <Button startIcon={<Iconify icon={'eva:search-fill'} sx={{ mr: 1 }} />} color="primary" variant="contained" fullWidth type="submit" sx={{ height: "100%" }}>
                             Search
                         </Button>
                     </Grid>
-                    <Grid md={5} sm={5} xs={5} item>
+                    <Grid md={5} sm={6} xs={6} item>
                         <FormControl fullWidth error={formik.touched.date && Boolean(formik.errors.date)} size='small'>
                             <InputLabel shrink htmlFor="date">
                                 Date
@@ -124,7 +124,7 @@ export const Search = () => {
                             }}
                         >{formik.touched.date && formik.errors.date}</div>
                     </Grid>
-                    <Grid md={5} sm={5} xs={5} item>
+                    <Grid md={5} sm={6} xs={6} item>
                         <FormControl fullWidth error={formik.touched.time && Boolean(formik.errors.time)} size='small'>
                             <InputLabel shrink htmlFor="time">
                                 Time
